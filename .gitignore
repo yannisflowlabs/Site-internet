@@ -1,0 +1,7 @@
+# Screenshots et fichiers temporaires
+*.png
+*.webp
+
+# Fichiers de développement
+serve.mjs
+Claude.md
