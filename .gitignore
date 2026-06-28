@@ -1,6 +1,7 @@
-# Screenshots et fichiers temporaires
-*.png
+# Screenshots temporaires
+Capture*.png
 *.webp
+1781791773978*
 
 # Fichiers de développement
 serve.mjs
