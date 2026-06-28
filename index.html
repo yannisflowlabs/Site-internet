@@ -1059,18 +1059,13 @@
       <p class="cta-sub cta-sub-mobile-hide" style="margin-bottom:0;">Choisissez un créneau. On identifie ensemble ce qu'on peut automatiser, comment générer des prospects en automatique et récupérer du temps pour ce qui compte vraiment. 30 min, 100% gratuit, sans engagement.</p>
     </div>
 
-    <!-- Cal.com inline -->
-    <div style="width:100%;border-radius:20px;overflow:visible;" id="my-cal-inline-30min"></div>
+    <!-- Cal.com popup -->
+    <div style="text-align:center; margin-top:40px;">
+      <button data-cal-link="yannis-flowlabs-spcjcn/30min" data-cal-namespace="30min" data-cal-config='{"layout":"month_view"}' class="btn-cta-lg" style="border:none;cursor:pointer;">Réserver mon diagnostic gratuit <span>→</span></button>
+    </div>
     <script type="text/javascript">
       (function (C, A, L) { let p = function (a, ar) { a.q.push(ar); }; let d = C.document; C.Cal = C.Cal || function () { let cal = C.Cal; let ar = arguments; if (!cal.loaded) { cal.ns = {}; cal.q = cal.q || []; d.head.appendChild(d.createElement("script")).src = A; cal.loaded = true; } if (ar[0] === L) { const api = function () { p(api, arguments); }; const namespace = ar[1]; api.q = api.q || []; if(typeof namespace === "string"){cal.ns[namespace] = cal.ns[namespace] || api;p(cal.ns[namespace], ar);p(cal, ["initNamespace", namespace]);} else p(cal, ar); return;} p(cal, ar); }; })(window, "https://app.cal.com/embed/embed.js", "init");
       Cal("init", "30min", {origin:"https://app.cal.com"});
-      Cal.config = Cal.config || {};
-      Cal.config.forwardQueryParams = true;
-      Cal.ns["30min"]("inline", {
-        elementOrSelector:"#my-cal-inline-30min",
-        config: {"layout":"month_view","useSlotsViewOnSmallScreen":"true"},
-        calLink: "yannis-flowlabs-spcjcn/30min",
-      });
       Cal.ns["30min"]("ui", {"hideEventTypeDetails":false,"layout":"month_view"});
     </script>
 
