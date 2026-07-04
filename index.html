@@ -1078,65 +1078,71 @@
     <div style="text-align:center; margin-bottom:52px;">
       <span class="section-label">Tarifs</span>
       <h2 class="section-title">Deux façons de travailler ensemble.</h2>
-      <p class="section-sub" style="margin:16px auto 0;">Choisissez selon votre situation — pas selon votre budget. Les deux offres commencent à 150 €.</p>
+      <p class="section-sub" style="margin:16px auto 0;">Choisissez selon votre situation. Les deux offres commencent par un premier appel à 150 €.</p>
     </div>
 
-    <div style="display:grid; grid-template-columns:1fr 1fr; gap:24px; align-items:start;">
+    <div class="pricing-grid">
 
-      <!-- Offre 1 : Coaching -->
-      <div style="position:relative; padding:32px; border-radius:22px; background:rgba(255,255,255,.04); border:1px solid rgba(255,255,255,.1); display:flex; flex-direction:column; gap:0;">
-        <div style="font-size:12px; letter-spacing:.12em; text-transform:uppercase; color:#E8521A; font-weight:700; margin-bottom:14px;">Coaching</div>
-        <h3 style="font-size:22px; font-weight:700; color:#F4F2F0; margin:0 0 8px; line-height:1.2;">Vous maîtrisez vos automatisations.</h3>
-        <p style="font-size:14px; line-height:1.65; color:rgba(244,242,240,.7); margin:0 0 28px;">En 2 à 4 séances, vous apprenez à utiliser Claude dans votre contexte — vos outils, vos clients, vos processus. Vous repartez autonome, capable de reproduire ou de déléguer en connaissance de cause.</p>
+      <!-- Offre 1 : Coaching (mise en avant) -->
+      <div class="pricing-card pricing-card--featured">
+        <div style="position:absolute;inset:0;border-radius:22px;background:radial-gradient(ellipse at 60% 0%,rgba(232,82,26,.18),transparent 65%);pointer-events:none;"></div>
+        <div style="position:relative;">
+          <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:20px;">
+            <span style="font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#E8521A;font-weight:700;">Coaching</span>
+            <span style="font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;background:#E8521A;color:#fff;padding:4px 14px;border-radius:100px;">Le plus choisi</span>
+          </div>
+          <h3 style="font-size:24px;font-weight:800;color:#F4F2F0;margin:0 0 10px;line-height:1.15;letter-spacing:-.01em;">Vous maîtrisez<br>vos automatisations.</h3>
+          <p style="font-size:14px;line-height:1.7;color:rgba(244,242,240,.7);margin:0 0 28px;">En 2 à 4 séances, vous apprenez à utiliser Claude dans votre contexte : vos outils, vos clients, vos processus. Vous repartez autonome, capable de reproduire ou de déléguer en connaissance de cause.</p>
 
-        <div style="margin-bottom:6px;">
-          <span style="font-size:36px; font-weight:800; color:#F4F2F0; letter-spacing:-.02em;">150 €</span>
-          <span style="font-size:15px; color:rgba(244,242,240,.6);"> / séance</span>
+          <div style="margin-bottom:4px;">
+            <span style="font-size:42px;font-weight:800;color:#F4F2F0;letter-spacing:-.03em;">150 €</span>
+            <span style="font-size:15px;color:rgba(244,242,240,.55);"> / séance</span>
+          </div>
+          <div style="font-size:14px;color:rgba(244,242,240,.5);margin-bottom:10px;">ou <strong style="color:rgba(244,242,240,.8);">500 € le pack 4 séances</strong></div>
+          <div style="display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:600;color:#E8521A;background:rgba(232,82,26,.1);border:1px solid rgba(232,82,26,.25);border-radius:100px;padding:5px 14px;margin-bottom:28px;">Sans abonnement. Sans engagement.</div>
+
+          <div style="border-top:1px solid rgba(255,255,255,.08);padding-top:20px;margin-bottom:28px;">
+            <div style="font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:rgba(244,242,240,.35);font-weight:700;margin-bottom:12px;">Pour vous si</div>
+            <p style="font-size:14px;line-height:1.65;color:rgba(244,242,240,.75);margin:0;font-style:italic;">Vous voulez comprendre, former votre équipe, garder la main sur vos process.</p>
+          </div>
+
+          <button data-cal-link="yannis-flowlabs-spcjcn/30min" data-cal-namespace="30min" data-cal-config='{"layout":"month_view"}' style="width:100%;padding:16px 24px;background:#E8521A;color:#fff;font-weight:700;font-size:15px;border:none;border-radius:12px;cursor:pointer;transition:opacity .2s;letter-spacing:.01em;" onmouseover="this.style.opacity='.85'" onmouseout="this.style.opacity='1'">Réserver mon diagnostic →</button>
         </div>
-        <div style="font-size:14px; color:rgba(244,242,240,.5); margin-bottom:6px;">ou <strong style="color:rgba(244,242,240,.75);">500 € le pack 4 séances</strong></div>
-        <div style="display:inline-flex; align-items:center; gap:6px; font-size:12px; font-weight:600; color:#E8521A; background:rgba(232,82,26,.1); border:1px solid rgba(232,82,26,.2); border-radius:100px; padding:4px 12px; width:fit-content; margin-bottom:28px;">Sans abonnement. Sans engagement.</div>
-
-        <div style="padding:16px; background:rgba(255,255,255,.03); border-radius:12px; border:1px solid rgba(255,255,255,.06); margin-bottom:28px;">
-          <div style="font-size:12px; letter-spacing:.08em; text-transform:uppercase; color:rgba(244,242,240,.4); font-weight:700; margin-bottom:10px;">Pour vous si</div>
-          <p style="font-size:14px; line-height:1.6; color:rgba(244,242,240,.75); margin:0; font-style:italic;">Vous voulez comprendre, former votre équipe, garder la main sur vos process.</p>
-        </div>
-
-        <button data-cal-link="yannis-flowlabs-spcjcn/30min" data-cal-namespace="30min" data-cal-config='{"layout":"month_view"}' style="width:100%; padding:14px 24px; background:#E8521A; color:#fff; font-weight:700; font-size:15px; border:none; border-radius:12px; cursor:pointer; transition:opacity .2s;" onmouseover="this.style.opacity='.85'" onmouseout="this.style.opacity='1'">Réserver une séance →</button>
       </div>
 
-      <!-- Offre 2 : Implémentation -->
-      <div style="position:relative; padding:32px; border-radius:22px; background:rgba(232,82,26,.06); border:1px solid rgba(232,82,26,.25); display:flex; flex-direction:column; gap:0;">
-        <div style="position:absolute; top:20px; right:20px; font-size:11px; font-weight:700; letter-spacing:.06em; text-transform:uppercase; background:#E8521A; color:#fff; padding:4px 12px; border-radius:100px;">Déléguer</div>
-        <div style="font-size:12px; letter-spacing:.12em; text-transform:uppercase; color:#E8521A; font-weight:700; margin-bottom:14px;">Implémentation</div>
-        <h3 style="font-size:22px; font-weight:700; color:#F4F2F0; margin:0 0 8px; line-height:1.2;">On automatise pour vous.</h3>
-        <p style="font-size:14px; line-height:1.65; color:rgba(244,242,240,.7); margin:0 0 28px;">On commence par une séance de cadrage pour analyser votre workflow et identifier ce qui est automatisable. Puis on vous soumet un devis forfait pour la mise en place — par livrable, pas à l'heure.</p>
+      <!-- Offre 2 : Implémentation (secondaire) -->
+      <div class="pricing-card">
+        <div style="position:relative;">
+          <div style="margin-bottom:20px;">
+            <span style="font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:rgba(244,242,240,.4);font-weight:700;">Implémentation</span>
+          </div>
+          <h3 style="font-size:22px;font-weight:700;color:#F4F2F0;margin:0 0 10px;line-height:1.2;">On automatise pour vous.</h3>
+          <p style="font-size:14px;line-height:1.7;color:rgba(244,242,240,.6);margin:0 0 28px;">On commence par une séance de cadrage pour analyser votre workflow et identifier ce qui est automatisable. Puis on vous soumet un devis forfait pour la mise en place : par livrable, pas à l'heure.</p>
 
-        <div style="margin-bottom:6px;">
-          <span style="font-size:36px; font-weight:800; color:#F4F2F0; letter-spacing:-.02em;">150 €</span>
-          <span style="font-size:15px; color:rgba(244,242,240,.6);"> / séance de cadrage</span>
+          <div style="padding:16px 20px;background:rgba(255,255,255,.04);border-radius:14px;border:1px solid rgba(255,255,255,.07);margin-bottom:28px;">
+            <div style="font-size:13px;color:rgba(244,242,240,.5);line-height:1.6;">Séance de cadrage à <strong style="color:rgba(244,242,240,.75);">150 €</strong> pour cartographier votre workflow.<br>Puis devis forfait par livrable. Les 150 € sont déduits si vous continuez.</div>
+          </div>
+
+          <div style="border-top:1px solid rgba(255,255,255,.06);padding-top:20px;margin-bottom:28px;">
+            <div style="font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:rgba(244,242,240,.3);font-weight:700;margin-bottom:12px;">Pour vous si</div>
+            <p style="font-size:14px;line-height:1.65;color:rgba(244,242,240,.6);margin:0;font-style:italic;">Vous n'avez pas le temps d'apprendre et voulez un résultat rapide.</p>
+          </div>
+
+          <button data-cal-link="yannis-flowlabs-spcjcn/30min" data-cal-namespace="30min" data-cal-config='{"layout":"month_view"}' style="width:100%;padding:16px 24px;background:rgba(255,255,255,.06);color:#F4F2F0;font-weight:600;font-size:15px;border:1px solid rgba(255,255,255,.1);border-radius:12px;cursor:pointer;transition:background .2s;" onmouseover="this.style.background='rgba(255,255,255,.1)'" onmouseout="this.style.background='rgba(255,255,255,.06)'">Réserver mon diagnostic →</button>
         </div>
-        <div style="font-size:14px; color:rgba(244,242,240,.5); margin-bottom:28px;">Déduits du forfait si vous continuez.</div>
-
-        <div style="padding:16px; background:rgba(255,255,255,.03); border-radius:12px; border:1px solid rgba(255,255,255,.06); margin-bottom:28px;">
-          <div style="font-size:12px; letter-spacing:.08em; text-transform:uppercase; color:rgba(244,242,240,.4); font-weight:700; margin-bottom:10px;">Pour vous si</div>
-          <p style="font-size:14px; line-height:1.6; color:rgba(244,242,240,.75); margin:0; font-style:italic;">Vous n'avez pas le temps d'apprendre et voulez un résultat rapide.</p>
-        </div>
-
-        <button data-cal-link="yannis-flowlabs-spcjcn/30min" data-cal-namespace="30min" data-cal-config='{"layout":"month_view"}' style="width:100%; padding:14px 24px; background:#E8521A; color:#fff; font-weight:700; font-size:15px; border:none; border-radius:12px; cursor:pointer; transition:opacity .2s;" onmouseover="this.style.opacity='.85'" onmouseout="this.style.opacity='1'">Réserver un appel cadrage →</button>
       </div>
 
     </div>
 
-    <!-- Ligne prix de lancement -->
-    <p style="text-align:center; margin-top:32px; font-size:13px; color:rgba(244,242,240,.4); line-height:1.6; max-width:540px; margin-left:auto; margin-right:auto;">Prix de lancement. Je construis mes premiers cas clients — et je préfère être accessible maintenant pour livrer des résultats concrets.</p>
-
+    <p style="text-align:center;margin-top:32px;font-size:13px;color:rgba(244,242,240,.35);line-height:1.6;max-width:520px;margin-left:auto;margin-right:auto;">Prix de lancement. Je construis mes premiers cas clients et je préfère être accessible maintenant pour livrer des résultats concrets.</p>
   </div>
 </section>
 
 <style>
-  @media (max-width: 640px) {
-    #pricing .section-inner > div:nth-child(2) { grid-template-columns: 1fr !important; }
-  }
+  .pricing-grid { display:grid; grid-template-columns:1fr 1fr; gap:20px; align-items:start; }
+  .pricing-card { position:relative; padding:32px; border-radius:22px; background:rgba(255,255,255,.03); border:1px solid rgba(255,255,255,.08); }
+  .pricing-card--featured { background:rgba(255,255,255,.06); border:1px solid rgba(232,82,26,.3); box-shadow:0 0 60px rgba(232,82,26,.1); }
+  @media (max-width: 640px) { .pricing-grid { grid-template-columns:1fr; } }
 </style>
 
 <!-- ══════════════════════════════════════
