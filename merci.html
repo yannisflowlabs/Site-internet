@@ -25,6 +25,13 @@
   .d3 { animation-delay: .34s; }
   .d4 { animation-delay: .46s; }
 
+  /* Étapes : état initial invisible, révélées au scroll */
+  .step-reveal {
+    opacity: 0; transform: translateY(32px);
+    transition: opacity .6s ease, transform .6s ease;
+  }
+  .step-reveal.visible { opacity: 1; transform: translateY(0); }
+
   .grain {
     position: fixed; inset: 0; pointer-events: none; z-index: 9999;
     opacity: .07; mix-blend-mode: overlay;
@@ -146,15 +153,6 @@
   .agenda-text { font-size: 15px; line-height: 1.6; color: rgba(244,242,240,.7); }
   .agenda-text strong { color: #F4F2F0; font-weight: 600; }
 
-  /* ── TÉMOIGNAGES ── */
-  .section { position: relative; padding: clamp(64px,8vh,96px) clamp(20px,5vw,56px); overflow: hidden; }
-  .section-inner { position: relative; max-width: 880px; margin: 0 auto; }
-  .section-label { font-size: 17px; letter-spacing: .12em; text-transform: uppercase; color: #E8521A; font-weight: 700; }
-  .section-title {
-    font-weight: 700; font-size: clamp(25px,4vw,44px); line-height: 1.05;
-    letter-spacing: -.02em; margin-top: 8px;
-  }
-
   .testi-row { display: grid; grid-template-columns: 1fr 1fr; gap: 47px; align-items: center; }
   .testi-left { display: flex; flex-direction: column; min-width: 0; }
   .testi-video {
@@ -174,17 +172,6 @@
   .testi-quote em { color: #E8521A; font-style: normal; }
   .testi-divider { height: 1px; background: linear-gradient(90deg, transparent, rgba(255,255,255,.1), transparent); margin: 43px 0; }
 
-  .glow-orange-tr {
-    position: absolute; top: -10%; right: -10%; width: 500px; height: 500px;
-    background: radial-gradient(circle, rgba(232,82,26,.1), transparent 65%);
-    filter: blur(60px); pointer-events: none;
-  }
-  .glow-purple-bl {
-    position: absolute; bottom: -10%; left: -5%; width: 500px; height: 500px;
-    background: radial-gradient(circle, rgba(124,58,237,.08), transparent 65%);
-    filter: blur(60px); pointer-events: none;
-  }
-
   /* Numéro étape dans le step 3 */
   .step-num.step-num--testi {
     background: rgba(255,255,255,.07); border: 1px solid rgba(255,255,255,.12);
@@ -195,12 +182,14 @@
     .step { grid-template-columns: 44px 1fr; gap: 0 18px; }
     .step:not(:last-child) .step-line { left: 21px; }
     .step-num { width: 42px; height: 42px; font-size: 17px; }
-    .testi-row { grid-template-columns: 1fr; gap: 28px; }
-    .testi-left { align-items: center; text-align: center; }
-    .testi-right { align-items: center; text-align: center; }
+    .testi-row { grid-template-columns: 1fr; gap: 32px; }
+    .testi-left { align-items: center; text-align: center; width: 100%; }
+    .testi-right { align-items: center; text-align: center; width: 100%; }
     .testi-tag { align-self: center; }
-    .testi-quote { font-size: 20px !important; line-height: 1.4; text-align: center; }
+    .testi-quote { font-size: 20px !important; line-height: 1.4; text-align: center; max-width: 100%; }
     .testi-name, .testi-role { text-align: center; }
+    .testi-video { width: 100%; max-width: 100%; }
+    .step-body { padding-right: 0; }
   }
 </style>
 </head>
@@ -232,7 +221,7 @@
   <div class="steps-inner">
 
     <!-- Étape 1 -->
-    <div class="step fade-up">
+    <div class="step step-reveal">
       <div class="step-line"></div>
       <div class="step-left">
         <div class="step-num">1</div>
@@ -251,7 +240,7 @@
     </div>
 
     <!-- Étape 2 -->
-    <div class="step fade-up d1">
+    <div class="step step-reveal">
       <div class="step-line"></div>
       <div class="step-left">
         <div class="step-num">2</div>
@@ -277,7 +266,7 @@
     </div>
 
     <!-- Étape 3 -->
-    <div class="step fade-up d2">
+    <div class="step step-reveal">
       <div class="step-left">
         <div class="step-num step-num--testi">3</div>
       </div>
@@ -362,5 +351,20 @@
   </div>
 </div>
 
+<script>
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.15 });
+
+  document.querySelectorAll('.step-reveal').forEach((el, i) => {
+    el.style.transitionDelay = (i * 0.15) + 's';
+    observer.observe(el);
+  });
+</script>
 </body>
 </html>
