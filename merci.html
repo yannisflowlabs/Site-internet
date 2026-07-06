@@ -98,26 +98,39 @@
 
   /* ── ÉTAPES ── */
   .steps { position: relative; z-index: 1; padding: 0 clamp(20px,5vw,56px) clamp(64px,8vh,96px); }
-  .steps-inner { max-width: 720px; margin: 0 auto; display: flex; flex-direction: column; gap: 0; }
+  .steps-inner { max-width: 720px; margin: 0 auto; display: flex; flex-direction: column; gap: 0; position: relative; }
 
-  .step {
-    display: grid; grid-template-columns: 56px 1fr;
-    gap: 0 28px; position: relative;
+  /* Ligne de fond (grise) */
+  .steps-track {
+    position: absolute; left: 29px; top: 32px; bottom: 32px;
+    width: 2px; background: rgba(255,255,255,.08); border-radius: 2px;
+    pointer-events: none;
+  }
+  /* Ligne de progression (orange) animée au scroll */
+  .steps-progress {
+    position: absolute; top: 0; left: 0; width: 100%;
+    background: linear-gradient(to bottom, #E8521A, rgba(232,82,26,.4));
+    border-radius: 2px; height: 0%;
+    transition: height .05s linear;
   }
 
-  /* Ligne verticale entre les étapes */
-  .step:not(:last-child) .step-line {
-    position: absolute; left: 27px; top: 56px; bottom: -32px;
-    width: 2px;
-    background: linear-gradient(to bottom, rgba(232,82,26,.35), rgba(232,82,26,.05));
+  .step {
+    display: grid; grid-template-columns: 62px 1fr;
+    gap: 0 28px; position: relative;
   }
 
   .step-left { display: flex; flex-direction: column; align-items: center; padding-top: 4px; }
   .step-num {
-    width: 52px; height: 52px; border-radius: 50%; flex-shrink: 0;
-    background: #E8521A; color: #fff; font-weight: 800; font-size: 20px;
+    width: 60px; height: 60px; border-radius: 50%; flex-shrink: 0;
+    background: #E8521A; color: #fff; font-weight: 800; font-size: 24px;
     display: flex; align-items: center; justify-content: center;
-    box-shadow: 0 0 28px rgba(232,82,26,.45);
+    box-shadow: 0 0 32px rgba(232,82,26,.5);
+    position: relative; z-index: 1;
+    transition: transform .3s ease, box-shadow .3s ease;
+  }
+  .step-num.active {
+    transform: scale(1.1);
+    box-shadow: 0 0 48px rgba(232,82,26,.8);
   }
 
   .step-body { padding-bottom: 52px; }
@@ -175,11 +188,6 @@
   .testi-quote em { color: #E8521A; font-style: normal; }
   .testi-divider { height: 1px; background: linear-gradient(90deg, transparent, rgba(255,255,255,.1), transparent); margin: 43px 0; }
 
-  /* Numéro étape dans le step 3 */
-  .step-num.step-num--testi {
-    background: rgba(255,255,255,.07); border: 1px solid rgba(255,255,255,.12);
-    box-shadow: none; color: rgba(244,242,240,.7); font-size: 20px;
-  }
 
   @media (max-width: 640px) {
     .step { grid-template-columns: 44px 1fr; gap: 0 18px; }
@@ -222,12 +230,13 @@
 <!-- ÉTAPES -->
 <div class="steps">
   <div class="steps-inner">
+    <!-- Ligne de progression -->
+    <div class="steps-track"><div class="steps-progress" id="stepsProgress"></div></div>
 
     <!-- Étape 1 -->
-    <div class="step step-reveal">
-      <div class="step-line"></div>
+    <div class="step step-reveal" data-step="1">
       <div class="step-left">
-        <div class="step-num">1</div>
+        <div class="step-num" id="stepNum1">1</div>
       </div>
       <div class="step-body">
         <div class="step-label">À faire maintenant</div>
@@ -243,10 +252,9 @@
     </div>
 
     <!-- Étape 2 -->
-    <div class="step step-reveal">
-      <div class="step-line"></div>
+    <div class="step step-reveal" data-step="2">
       <div class="step-left">
-        <div class="step-num">2</div>
+        <div class="step-num" id="stepNum2">2</div>
       </div>
       <div class="step-body">
         <div class="step-label">Ne l'oublie pas</div>
@@ -269,9 +277,9 @@
     </div>
 
     <!-- Étape 3 -->
-    <div class="step step-reveal">
+    <div class="step step-reveal" data-step="3">
       <div class="step-left">
-        <div class="step-num step-num--testi">3</div>
+        <div class="step-num" id="stepNum3">3</div>
       </div>
       <div class="step-body" style="padding-bottom:0;">
         <div class="step-label">En attendant</div>
@@ -355,19 +363,51 @@
 </div>
 
 <script>
-  const observer = new IntersectionObserver((entries) => {
+  // Révéler les étapes au scroll (réversible)
+  const steps = document.querySelectorAll('.step-reveal');
+  const progressBar = document.getElementById('stepsProgress');
+  const track = document.querySelector('.steps-track');
+  const stepsNums = [
+    document.getElementById('stepNum1'),
+    document.getElementById('stepNum2'),
+    document.getElementById('stepNum3'),
+  ];
+
+  const revealObserver = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
         entry.target.classList.add('visible');
-        observer.unobserve(entry.target);
+      } else {
+        entry.target.classList.remove('visible');
       }
     });
-  }, { threshold: 0.15 });
+  }, { threshold: 0.1 });
 
-  document.querySelectorAll('.step-reveal').forEach((el, i) => {
-    el.style.transitionDelay = (i * 0.15) + 's';
-    observer.observe(el);
-  });
+  steps.forEach(el => revealObserver.observe(el));
+
+  // Ligne de progression au scroll
+  function updateProgress() {
+    if (!track) return;
+    const trackRect = track.getBoundingClientRect();
+    const trackTop = trackRect.top + window.scrollY;
+    const trackHeight = track.offsetHeight;
+    const scrolled = window.scrollY + window.innerHeight * 0.6;
+    const progress = Math.min(1, Math.max(0, (scrolled - trackTop) / trackHeight));
+    progressBar.style.height = (progress * 100) + '%';
+
+    // Allumer les numéros selon la progression
+    stepsNums.forEach((num, i) => {
+      const threshold = i / (stepsNums.length - 0.5);
+      if (progress >= threshold) {
+        num.classList.add('active');
+      } else {
+        num.classList.remove('active');
+      }
+    });
+  }
+
+  window.addEventListener('scroll', updateProgress, { passive: true });
+  updateProgress();
 </script>
 </body>
 </html>
